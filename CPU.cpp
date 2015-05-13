@@ -4,11 +4,10 @@ WORD program[] = {
     SET, 0, A,
     SET, 1, B,
     SET, 101, C,
-    SET, 1, D, //Develop INC command on register
     ADD, B, A, //Accumulate B values in A
-    ADD, D, B, //Increment B
+    INC, B,    //Increment B
     CMP, B, C, //See if B is == 101 
-    JNE, 12,   //Jump to ADD B A
+    JNE, 9,   //Jump to ADD B A
     LOG, A,
     END
 };
@@ -95,6 +94,16 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             if(registers[EQ] != 0)
                 registers[IP] = loc-1;
+            break;
+        }
+        case INC: {
+            WORD reg = next();
+            registers[reg]++;
+            break;
+        }
+        case DEC: {
+            WORD reg = next();
+            registers[reg]--;
             break;
         }
     }

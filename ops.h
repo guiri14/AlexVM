@@ -15,7 +15,9 @@ enum ASM {
     JMP,
     CMP,
     JE,
-    JNE
+    JNE,
+    INC,
+    DEC
 };
 
 enum REGS {
