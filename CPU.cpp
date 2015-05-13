@@ -1,15 +1,15 @@
 #include "CPU.h"
 
 WORD program[] = {
-    SET, 999, B,
-    SET, 1, D,
-    SET, 0, C,
-    SET, 4, A,
-    SUB, D, A,
+    SET, 0, A,
+    SET, 1, B,
+    SET, 101, C,
+    SET, 1, D, //Develop INC command on register
+    ADD, B, A, //Accumulate B values in A
+    ADD, D, B, //Increment B
+    CMP, B, C, //See if B is == 101 
+    JNE, 12,   //Jump to ADD B A
     LOG, A,
-    CMP, A, C,
-    JNE, 12,
-    LOG, B,
     END
 };
 
