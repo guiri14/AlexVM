@@ -16,6 +16,10 @@ enum ASM {
     CMP,
     JE,
     JNE,
+    JGT,
+    JLT,
+    JGE,
+    JLE,
     INC,
     DEC
 };
@@ -25,7 +29,7 @@ enum REGS {
     B,
     C,
     D,
-    EQ,
+    FLAGS,
     IP,
     SP,
     NUM_OF_REGS

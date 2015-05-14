@@ -26,3 +26,6 @@
 *.exe
 *.out
 *.app
+
+# Test dump file, usually running ./run.out >> test.txt
+test.txt

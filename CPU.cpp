@@ -7,6 +7,7 @@ WORD program[] = {
     ADD, B, A, //Accumulate B values in A
     INC, B,    //Increment B
     CMP, B, C, //See if B is == 101 
+    LOG, A,
     JNE, 9,   //Jump to ADD B A
     LOG, A,
     END
@@ -80,20 +81,61 @@ void CPU::execute(WORD op) {
         case CMP: {
             WORD a = next();
             WORD b = next();
-            WORD c = registers[a]-registers[b];
-            registers[EQ] = c;
+            registers[FLAGS] = 0;
+            if(registers[a] == registers[b])
+                registers[FLAGS] = (1<<0);
+            if(registers[a] > registers[b])
+                registers[FLAGS] = (1<<1);
+            if(registers[a] < registers[b])
+                registers[FLAGS] = (1<<2);
             break;
         }
         case JE: {
             WORD loc = next();
-            if(registers[EQ] == 0)
+            WORD flag = registers[FLAGS]&(1<<0);
+            if(flag == (1<<0)){
                 registers[IP] = loc-1;
+            }
             break;
         }
         case JNE: { 
             WORD loc = next();
-            if(registers[EQ] != 0)
+            WORD flag = registers[FLAGS]&(1<<0);
+            if(flag != (1<<0)){
                 registers[IP] = loc-1;
+            }
+            break;
+        }
+        case JGT: { 
+            WORD loc = next();
+            WORD flag = registers[FLAGS]&(1<<1);
+            if(flag == (1<<1)){
+                registers[IP] = loc-1;
+            }
+            break;
+        }
+        case JLT: { 
+            WORD loc = next();
+            WORD flag = registers[FLAGS]&(1<<2);
+            if(flag == (1<<2)){
+                registers[IP] = loc-1;
+            }
+            break;
+        }
+        case JGE: { 
+            WORD loc = next();
+            WORD flag = registers[FLAGS]&(1<<2);
+            if(flag != (1<<2)){ //Is NOT less than
+                registers[IP] = loc-1;
+            }
+            break;
+        }
+        case JLE: { 
+            WORD loc = next();
+            WORD flag = registers[FLAGS]&(1<<1);
+            if(flag != (1<<1)){ // Is NOT greater than
+                registers[IP] = loc-1;
+            }
             break;
         }
         case INC: {
