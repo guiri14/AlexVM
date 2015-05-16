@@ -2,13 +2,13 @@
 
 WORD program[] = {
     SET, 0, A,
-    SET, 100, B,
-    SET, 0, C,
+    SET, 1, B,
+    SET, 101, C,
     ADD, B, A, //Accumulate B values in A
-    DEC, B,    //Increment B
+    INC, B,    //Increment B
     CMP, B, C, //See if B is == 101 
     LOG, A,
-    JGT, 9,   //Jump to ADD B A
+    JLT, 9,   //Jump to ADD B A
     LOG, A,
     END
 };

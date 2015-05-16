@@ -4,7 +4,7 @@ SIMPLY MARK TODO'S WITH A COMPLETED FLAG LIKE SO:
 N.   Example TODO  -- DONE
 
 1.   Test the veracity of JGT -- DONE
-2.   Test the veracity of JLT
+2.   Test the veracity of JLT -- DONE
 3.   Test the veracity of JGE -- DONE
 4.   Test the veracity of JLE -- DONE
 5.   Implement a stack
