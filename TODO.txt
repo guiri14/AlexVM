@@ -5,7 +5,7 @@ N.   Example TODO  -- DONE
 
 1.   Test the veracity of JGT
 2.   Test the veracity of JLT
-3.   Test the veracity of JGE
+3.   Test the veracity of JGE -- DONE
 4.   Test the veracity of JLE -- DONE
 5.   Implement a stack
 6.   Support operations on BYTEs as well as WORDs
