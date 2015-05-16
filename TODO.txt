@@ -20,3 +20,4 @@ N.   Example TODO  -- DONE
 15.  Implement stack op SMUL
 16.  Implement stack op SDIV
 17.  Test the veracity of MOV
+18.  Implement automatic testing - All opcodes should be tested
