@@ -44,6 +44,12 @@ void CPU::execute(WORD op) {
             registers[reg] = val;
             break;
         }
+        case MOV: {
+            WORD src = next();
+            WORD dst = next();
+            registers[dst] = registers[src];
+            break;
+        }
         case ADD: {
             WORD src = next();
             WORD dst = next();

@@ -7,6 +7,7 @@ typedef uint16_t WORD;
 enum ASM {
     END,
     SET,
+    MOV,
     ADD,
     SUB,
     MUL,

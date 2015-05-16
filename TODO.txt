@@ -9,7 +9,7 @@ N.   Example TODO  -- DONE
 4.   Test the veracity of JLE
 5.   Implement a stack
 6.   Support operations on BYTEs as well as WORDs
-7.   Implement MOV operator
+7.   Implement MOV operator -- DONE
 8.   Implement NOP operator
 9.   Implement function calling
 10.  Implement function returning
@@ -19,4 +19,4 @@ N.   Example TODO  -- DONE
 14.  Implement stack op SSUB
 15.  Implement stack op SMUL
 16.  Implement stack op SDIV
-17.  Find more TODOs
+17.  Test the veracity of MOV
