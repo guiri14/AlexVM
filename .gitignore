@@ -29,3 +29,6 @@
 
 # Test dump file, usually running ./run.out >> test.txt
 test.txt
+
+# Visual Studio 2013 crap
+AlexVM/

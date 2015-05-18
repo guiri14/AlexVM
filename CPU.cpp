@@ -10,6 +10,49 @@ WORD program[] = {
     LOG, A,
     JLT, 9,   //Jump to ADD B A
     LOG, A,
+	SET, 0xC6E7, C,
+	LOGH, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	LOGH, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	LOGH, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	LOGH, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	ROTL, C,
+	LOGH, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	LOGH, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	LOGH, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	LOGH, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	ROTR, C,
+	LOGH, C,
+	NOP,
     END
 };
 
@@ -73,12 +116,17 @@ void CPU::execute(WORD op) {
             WORD dst = next();
             registers[dst] /= registers[src];
             break;
-        }
-        case LOG: {
-            WORD reg = next();
-            cout << registers[reg] << endl;
-            break;
-        }
+		}
+		case LOG: {
+			WORD reg = next();
+			cout << registers[reg] << endl;
+			break;
+		}
+		case LOGH: {
+			WORD reg = next();
+			printf("%x\n", registers[reg]);
+			break;
+		}
         case JMP: {
             WORD loc = next();
             registers[IP] = loc-1;
@@ -154,6 +202,26 @@ void CPU::execute(WORD op) {
             registers[reg]--;
             break;
         }
+		case NOP: {
+			next(); // SCHKIIIIIPPP!!!
+			break;
+		}
+		case ROTL: {
+			WORD reg = next();
+			WORD rotate = (registers[reg] << 1) & 0xFFFE; // get the logical rotate
+			WORD last = ((registers[reg] & (1 << 15)) >> 15); // get the bit rotated off
+			WORD final = rotate | last; // or them together
+			registers[reg] = final;
+			break;
+		}
+		case ROTR: {
+			WORD reg = next();
+			WORD rotate = (registers[reg] >> 1) & 0x7FFF; // get the logical rotate
+			WORD last = ((registers[reg] & 1) << 15); // get the bit rotated off
+			WORD final = rotate | last; // or them together
+			registers[reg] = final;
+			break;
+		}
     }
 }
 
