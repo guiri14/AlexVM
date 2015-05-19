@@ -203,7 +203,6 @@ void CPU::execute(WORD op) {
             break;
         }
 		case NOP: {
-			next(); // SCHKIIIIIPPP!!!
 			break;
 		}
 		case ROTL: {

@@ -10,7 +10,7 @@ N.   Example TODO  -- DONE
 5.   Implement a stack
 6.   Support operations on BYTEs as well as WORDs
 7.   Implement MOV operator -- DONE
-8.   Implement NOP operator
+8.   Implement NOP operator -- DONE
 9.   Implement function calling
 10.  Implement function returning
 11.  Implement stack op PUSH
@@ -22,3 +22,4 @@ N.   Example TODO  -- DONE
 17.  Test the veracity of MOV
 18.  Implement automatic testing - All opcodes should be tested
 19.  Document all of the OP Codes
+20.  Test the veracity of NOP
