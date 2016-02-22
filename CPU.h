@@ -3,10 +3,14 @@
 
 #include "ops.h"
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 using namespace std;
 class CPU {
+    bool useFile;
     bool running;
+
+    WORD* file;
 
     WORD fetch();
     void execute(WORD op);
@@ -15,7 +19,7 @@ class CPU {
     WORD registers[NUM_OF_REGS];
 
 public:
-    CPU();
+    CPU(char* file);
 
     void run();
 };

@@ -10,7 +10,7 @@ WORD program[] = {
     LOG, A,
     JLT, 9,   //Jump to ADD B A
     LOG, A,
-    SET, 0xC6E7, C,
+    /*SET, 0xC6E7, C,
     LOGH, C,
     ROTL, C,
     ROTL, C,
@@ -52,11 +52,12 @@ WORD program[] = {
     ROTR, C,
     ROTR, C,
     LOGH, C,
-    NOP,
+    NOP,*/
     END
 };
 
-CPU::CPU(){
+CPU::CPU(char* file){
+    this->file = ((WORD*)file);
     running = false;
     for(int i = 0; i < NUM_OF_REGS; i++) {
         registers[i] = 0;
@@ -64,11 +65,11 @@ CPU::CPU(){
 }
 
 WORD CPU::fetch(){
-    return program[registers[IP]];
+    return file[registers[IP]];
 }
 
 WORD CPU::next() {
-    return program[++registers[IP]];
+    return file[++registers[IP]];
 }
 
 
