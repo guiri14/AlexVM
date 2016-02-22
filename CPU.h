@@ -3,6 +3,7 @@
 
 #include "ops.h"
 #include <iostream>
+#include <cstdio>
 using namespace std;
 class CPU {
     bool running;
