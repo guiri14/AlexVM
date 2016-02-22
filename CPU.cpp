@@ -56,8 +56,15 @@ WORD program[] = {
     END
 };
 
-CPU::CPU(char* file){
-    this->file = ((WORD*)file);
+CPU::CPU(char* tfile){
+    mem = new BYTE[65536];
+    this->file = ((WORD*)tfile);
+    memcpy(&mem, &file, sizeof(file));
+    /*for(int i = 0; i < 48/2; i++)
+        cout << (int)(file[i]) << endl;
+    for(int i = 0; i < 48; i+=2)
+        cout <<  << endl;*/
+    cout << endl;
     running = false;
     for(int i = 0; i < NUM_OF_REGS; i++) {
         registers[i] = 0;
@@ -65,11 +72,14 @@ CPU::CPU(char* file){
 }
 
 WORD CPU::fetch(){
-    return file[registers[IP]];
+    WORD i = registers[IP];
+    WORD temp = (WORD)((mem[i])|(((WORD)mem[i+1])<<8));
+    return temp;
 }
 
 WORD CPU::next() {
-    return file[++registers[IP]];
+    registers[IP]+= 2;
+    return fetch();
 }
 
 
@@ -149,7 +159,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<0);
             if(flag == (1<<0)){
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -157,7 +167,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<0);
             if(flag != (1<<0)){
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -165,7 +175,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<1);
             if(flag == (1<<1)){
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -173,7 +183,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<2);
             if(flag == (1<<2)){
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -181,7 +191,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<2);
             if(flag != (1<<2)){ //Is NOT less than
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -189,7 +199,7 @@ void CPU::execute(WORD op) {
             WORD loc = next();
             WORD flag = registers[FLAGS]&(1<<1);
             if(flag != (1<<1)){ // Is NOT greater than
-                registers[IP] = loc-1;
+                registers[IP] = loc-2;
             }
             break;
         }
@@ -230,6 +240,6 @@ void CPU::run() {
     while(running) {
         WORD op = fetch();
         execute(op);
-        registers[IP]++;
+        registers[IP]+=2;
     }
 }

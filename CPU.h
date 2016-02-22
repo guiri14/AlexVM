@@ -5,12 +5,14 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <cstring>
 using namespace std;
 class CPU {
     bool useFile;
     bool running;
 
     WORD* file;
+    BYTE* mem;
 
     WORD fetch();
     void execute(WORD op);

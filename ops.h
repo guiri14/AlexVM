@@ -13,7 +13,7 @@ enum ASM {
     MUL,
     DIV,
     LOG,
-	LOGH,
+    LOGH,
     JMP,
     CMP,
     JE,
@@ -24,9 +24,9 @@ enum ASM {
     JLE,
     INC,
     DEC,
-	NOP, // null op
-	ROTL,//  rotate left, EX: ROTL 1100101010110001 --> 1001010101100011
-	ROTR // rotate right, EX: ROTR 1100101010110001 --> 1110010101011000
+    NOP, // null op
+    ROTL,//  rotate left, EX: ROTL 1100101010110001 --> 1001010101100011
+    ROTR // rotate right, EX: ROTR 1100101010110001 --> 1110010101011000
 };
 
 enum REGS {

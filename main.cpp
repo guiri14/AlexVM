@@ -14,8 +14,6 @@ int main(int argc, char* argv[]) {
             in.seekg(0, ios::beg);
             in.read(file, size);
             in.close();
-            cout << file << endl;
-            cout << &file << endl;
             CPU* vm = new CPU(file);
             vm->run();
         } else {
