@@ -21,7 +21,7 @@ class CPU {
     WORD registers[NUM_OF_REGS];
 
 public:
-    CPU(char* file);
+    CPU(char* file, int size);
 
     void run();
 };

@@ -8,20 +8,15 @@ WORD program[] = {
     INC, B,    //Increment B
     CMP, B, C, //See if B is == 101 
     LOG, A,
-    JLT, 9,   //Jump to ADD B A
+    JLT, 18,   //Jump to ADD B A
     LOG, A,
     END
 };
 
-CPU::CPU(char* tfile){
+CPU::CPU(char* tfile, int size){
     mem = new BYTE[65536];
-    this->file = ((WORD*)tfile);
-    memcpy(&mem, &file, sizeof(file));
-    /*for(int i = 0; i < 48/2; i++)
-        cout << (int)(file[i]) << endl;
-    for(int i = 0; i < 48; i+=2)
-        cout <<  << endl;*/
-    cout << endl;
+    this->file = (WORD*)tfile;
+    memcpy(&mem, &file, size); 
     running = false;
     for(int i = 0; i < NUM_OF_REGS; i++) {
         registers[i] = 0;

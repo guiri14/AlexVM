@@ -32,3 +32,6 @@ test.txt
 
 # Visual Studio 2013 crap
 AlexVM/
+
+# Vim swap files
+*.swp
